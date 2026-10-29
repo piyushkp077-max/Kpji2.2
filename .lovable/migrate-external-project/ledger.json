@@ -1,0 +1,13 @@
+{
+  "source": "github",
+  "repo": "https://github.com/piyushkp077-max/caption-sparkle-66.git",
+  "capabilities": [
+    { "capability": "application code (routes, components, styles, assets)", "source": "repo src/", "outcome": "copied into project; old asset.json pointers replaced with local image imports", "status": "verified", "next_action": null },
+    { "capability": "schema (app_events analytics table)", "source": "drizzle/migrations", "outcome": "recreated as Lovable Cloud migration", "status": "verified", "next_action": null },
+    { "capability": "visitor + AI usage analytics", "source": "src/lib/analytics.*", "outcome": "works on new app_events table", "status": "verified", "next_action": null },
+    { "capability": "historical analytics records", "source": "old project's database", "outcome": "no record export in repo; stats start fresh", "status": "pending", "next_action": "user may skip; old analytics history is not portable without an export from the previous project" },
+    { "capability": "AI caption generation (/api/caption)", "source": "src/routes/api/caption.ts", "outcome": "tested end-to-end, streams captions", "status": "verified", "next_action": null },
+    { "capability": "admin dashboard with password gate", "source": "src/routes/admin.tsx + admin.functions.ts", "outcome": "SESSION_SECRET generated, ADMIN_PASSWORD set; login and stats verified", "status": "verified", "next_action": null },
+    { "capability": "test suite", "source": "src/test + lib tests", "outcome": "40 tests passing", "status": "verified", "next_action": null }
+  ]
+}
