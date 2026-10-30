@@ -30,6 +30,18 @@ for (let i = 1; i <= KEY_COUNT; i++) {
   if (value) keys.push({ key: value, index: i, client: new GoogleGenAI({ apiKey: value }), benchedUntil: 0, consecutiveFailures: 0 });
 }
 
+// TEMP: log which GEMINI_API_KEY_1..19 are loaded vs undefined
+const loaded = keys.map((k) => k.index);
+const missing = Array.from({ length: KEY_COUNT }, (_, i) => i + 1).filter((i) => !loaded.includes(i));
+console.log(
+  `[gemini-keys] ${loaded.length}/${KEY_COUNT} keys active. ` +
+    `loaded: [${loaded.join(", ")}]` +
+    (missing.length ? ` | missing/undefined: [${missing.join(", ")}]` : "")
+);
+if (loaded.length === 0) {
+  console.warn("[gemini-keys] WARNING: zero keys loaded — check process.env.GEMINI_API_KEY_1..19");
+}
+
 let cursor = 0;
 
 export function getGeminiKeyCount(): number {
